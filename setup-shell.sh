@@ -8,8 +8,9 @@ realpath-local () {
 echo -en "This script will delete ~/.profile and ~/bin and reinstall them from '$dir'\nAre you sure? (y/n) "
 read conf
 if [ "$conf" == "y" ]; then
-  rm -rf ~/.profile ~/bin
-  ln -s $(realpath-local "$dir/.profile") ~/.profile
+  rm -rf ~/.profile ~/.bashrc ~/.bash_login ~/bin
+  ln -s $(realpath-local "$dir/.bashrc") ~/.bashrc
+  ln -s $(realpath-local "$dir/.bash_login") ~/.bash_login
   ln -s $(realpath-local "$dir/bin/") ~/bin
   echo Done.
 else
