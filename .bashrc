@@ -11,6 +11,7 @@ alias ga='git add'
 alias grm='git rm'
 alias gc='git commit'
 alias gp='git push'
+alias gpl='git pull'
 
 gca () {
   gc -a -m "$*"
