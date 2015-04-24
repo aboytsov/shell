@@ -7,10 +7,16 @@ export PATH=~/bin:$PATH
 # aliases and shortcuts
 alias g='git'
 alias gc='git commit'
+alias gp='git push'
 gca () {
   gc -a -m "$*"
 }
+gcp () {
+  gca "$*"
+  gp
+}
 alias gs='git status'
+alias grm='git rm'
 alias l='lein'
 
 unset PS1
