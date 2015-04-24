@@ -1,0 +1,2 @@
+#!/bin/bash
+git remote show origin|sed -n 's/^[[:space:]]*Fetch URL: \(.*\)$/\1/p'

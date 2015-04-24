@@ -1,0 +1,2 @@
+#!/bin/bash
+$(dirname $0)/quiet "$@" 2>/dev/null
