@@ -1,2 +1,7 @@
 #!/bin/bash
-open -a emacs --args -q --load ~/.emacs.d/init-mac.el ~/stuph/src/clj/stuph/repl.clj $@
+if [ -z "$EMACS_DEBUG" ]; then
+  open -a emacs --args $@
+else
+  echo "Starting Emacs in init debug mode..."
+  open -a emacs --args --debug-init
+fi

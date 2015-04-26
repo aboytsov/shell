@@ -1,4 +1,7 @@
+unset COMMAND_PROMPT
+
 export PATH=~/bin:$PATH
+export EMACS_PROFILE=mac
 
 # aliases and shortcuts
 alias l='lein'
@@ -21,4 +24,3 @@ gcp () {
   gp
 }
 
-unset PROMPT_COMMAND
