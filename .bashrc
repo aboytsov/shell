@@ -16,6 +16,8 @@ alias gc='git commit'
 alias gp='git push'
 alias gpl='git pull'
 
+alias emacs-stuph='emacs ~/stuph/src/clj/stuph/repl.clj'
+
 gca () {
   gc -a -m "$*"
 }
