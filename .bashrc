@@ -4,6 +4,8 @@ export PATH=~/bin:$PATH
 export EMACS_PROFILE=kinesis
 
 # aliases and shortcuts
+alias grepi='grep -i'
+
 alias l='lein'
 
 alias g='git'
