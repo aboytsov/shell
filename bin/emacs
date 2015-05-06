@@ -1,7 +1,7 @@
 #!/bin/bash
 if [ -z "$EMACS_DEBUG" ]; then
-  open -a emacs --args $@
+  open -a emacs --args $(realpath "$@")
 else
-  echo "Starting Emacs in init debug mode..."
+  echo "Ignoring arguments: starting Emacs in init debug mode"
   open -a emacs --args --debug-init
 fi
