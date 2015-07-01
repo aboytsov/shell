@@ -61,19 +61,21 @@ prompt_func() {
         git_branch=
     fi
 
+    cprint $color_gray "%s:" $(whoami)
     cprint $color_non_git_path "%s" "$non_git_path"
     cprint $color_git_branch "%s" "$git_branch"
     cprint $color_git_path "%s" "$git_path"
     cprint $color_prompt "%s" "$prompt"
-    tput sc
+    # tput sc
 
-    right="$(whoami)@$(hostname)"
-    num_spaces=$((${COLUMNS}-${#right}-${#non_git_path}-${#git_branch}-\
-                            ${#git_path}-${#prompt}))
-    cprint $color_gray "%${num_spaces}s" " "
+    # right="$(whoami)@$(hostname)"
+    # num_spaces=$((${COLUMNS}-${#right}-${#non_git_path}-${#git_branch}-\
+    #                         ${#git_path}-${#prompt}))
+    # num_spaces=0
+    # cprint $color_gray "%${num_spaces}s" " "
 
-    cprint $color_right $right
-    tput rc
+    # cprint $color_right $right
+    # tput rc
 
     tput sgr0
     tput bold
