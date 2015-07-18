@@ -6,9 +6,6 @@ if [ -f ~/.bashrc ]; then
    source ~/.bashrc
 fi
 
-unset PS1
-unset PS2
-
 is_git_repository() {
   git branch > /dev/null 2>&1
 }
@@ -20,8 +17,16 @@ get_git_branch() {
     printf $branch_name
 }
 
+tput-escaped() {
+    # we need to escape it otherwise cursor navigation will get broken:
+    # http://superuser.com/questions/207298/mac-terminal-iterm-history-cursor-problems
+    echo -n '\['
+    tput $@
+    echo -n '\]'
+}
+
 set_color() {
-    tput setaf $1
+    tput-escaped setaf $1
 }
 
 cprint() {
@@ -41,13 +46,7 @@ color_magenta=5
 color_cyan=6
 color_gray=7
 
-color_non_git_path=$color_blue
-color_git_path=$color_blue
-color_git_branch=$color_cyan
-color_prompt=$color_blue
-color_right=$color_gray
-
-prompt_func() {
+print_prompt() {
     relative_pwd=${PWD/~/\~}
     if is_git_repository; then
         git_root=$(git rev-parse --show-toplevel)
@@ -61,24 +60,16 @@ prompt_func() {
         git_branch=
     fi
 
-    cprint $color_gray "%s:" $(whoami)
-    cprint $color_non_git_path "%s" "$non_git_path"
-    cprint $color_git_branch "%s" "$git_branch"
-    cprint $color_git_path "%s" "$git_path"
-    cprint $color_prompt "%s" "$prompt"
-    # tput sc
+    cprint $color_blue "%s" "$non_git_path"
+    cprint $color_cyan "%s" "$git_branch"
+    cprint $color_blue "%s" "$git_path"
+    cprint $color_blue "%s" "$prompt"
+    tput-escaped sgr0
+    tput-escaped bold
+}
 
-    # right="$(whoami)@$(hostname)"
-    # num_spaces=$((${COLUMNS}-${#right}-${#non_git_path}-${#git_branch}-\
-    #                         ${#git_path}-${#prompt}))
-    # num_spaces=0
-    # cprint $color_gray "%${num_spaces}s" " "
-
-    # cprint $color_right $right
-    # tput rc
-
-    tput sgr0
-    tput bold
+prompt_func() {
+    export PS1=$(print_prompt)
 }
 
 export PROMPT_COMMAND=prompt_func
