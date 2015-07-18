@@ -73,4 +73,5 @@ prompt_func() {
 }
 
 export PROMPT_COMMAND=prompt_func
-trap "tput sgr0" DEBUG
+export TERMINAL_RESET=$(echo -en "\033(B\033[m")
+trap 'echo -n $TERMINAL_RESET' DEBUG
