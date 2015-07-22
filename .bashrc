@@ -1,7 +1,7 @@
 unset COMMAND_PROMPT
 
 export PATH=~/bin:$PATH
-export EMACS_PROFILE=mac
+export EMACS_PROFILE=kinesis
 
 # aliases and shortcuts
 alias ls='ls -G'
